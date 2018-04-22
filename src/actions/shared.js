@@ -8,7 +8,7 @@ export function handleGetUsers(){
     return (dispatch)=>{
         return _getUsers().then((res)=>{
             console.log(res);
-            dispatch(receiveUsers(res.users))
+            dispatch(receiveUsers(res))
             dispatch(setAuthedUser(AUTHED_USER))
         })
     }

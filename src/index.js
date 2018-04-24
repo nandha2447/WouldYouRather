@@ -14,17 +14,27 @@ import AddQuestion from './components/AddQuestion'
 import NotFoundPage from './components/NotFoundPage'
 import NavBar from './components/NavBar'
 
-const fakeAuth = {
+export const fakeAuth = {
     isAuthenticated: false,
     authenticate(cb){
+        // cb();
         this.isAuthenticated = true;
         setTimeout(cb,100) // fake async
     },
     signout(cb){
+        cb();
         this.isAuthenticated = false;
         setTimeout(cb,100)
     }
 }
+
+const PrivateRoute = ({component: Component, ...rest}) => (
+    <Route {...rest} render={(props)=>(
+        fakeAuth.isAuthenticated === true 
+            ? <Component {...props}/>
+            : <Redirect to='/'/>
+    )} />
+)
 
 const store = createStore(reducer,compose(
     middleware,
@@ -39,11 +49,11 @@ ReactDOM.render(
             <Switch>
                 <Route path="/" component={App} exact={true}/>
                 {/* <NavBar /> */}
-                <Route path="/home" component={HomePage}/>
-                <Route path="/leaderboard" component={LeaderBoard}/>
-                <Route path="/add" component={AddQuestion}/>
-                <Route component={NotFoundPage}/>
-                <Route path="/:id" component={NavBar}/>
+                <PrivateRoute path="/home" component={HomePage}/>
+                <PrivateRoute path="/leaderboard" component={LeaderBoard}/>
+                <PrivateRoute path="/add" component={AddQuestion}/>
+                <PrivateRoute component={NotFoundPage}/>
+                <PrivateRoute path="/:id" component={NavBar}/>
             </Switch>
             {/* </Fragment> */}
         </BrowserRouter>

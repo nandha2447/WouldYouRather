@@ -40,8 +40,7 @@ class Login extends Component{
 
 function mapStateToProps(state){
     return {
-        userIds: Object.values(state.users)
-        
+        userIds: Object.values(state.users)        
     }
 }
 

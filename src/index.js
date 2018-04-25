@@ -47,18 +47,13 @@ const store = createStore(reducer,compose(
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            {/* <Fragment>
-                <NavBar /> */}
             <Switch>
                 <Route path="/" component={App} exact={true}/>
-                {/* <NavBar /> */}
                 <PrivateRoute path="/home" component={HomePage}/>
                 <PrivateRoute path="/leaderboard" component={LeaderBoard}/>
                 <PrivateRoute path="/add" component={AddQuestion}/>
                 <PrivateRoute component={NotFoundPage}/>
-                <PrivateRoute path="/:id" component={NavBar}/>
             </Switch>
-            {/* </Fragment> */}
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
 

@@ -11,32 +11,27 @@ class Login extends Component{
         redirectToReferrer: false
     }
     // Handler to set the authenticated user from the list of available users
-    componentWillUnmount(){
-        console.log("Unmounting");
-    }
     handleLoginClick(id){
         fakeAuth.authenticate(()=>{
-            this.setState(()=>({
+            this.setState({
                 redirectToReferrer: true
-            }))
+            })
         })
         this.props.dispatch(setAuthedUser(id))
-        // this.setState(()=>({
-        //     redirectToReferrer:true
-        // }))
     }
     render(){
         const { redirectToReferrer } = this.state
+        const { from } = this.props.location.state || { from: { pathname: "/home" } };
+        console.log(this.props)
         if(redirectToReferrer === true){
             return(
-                <Redirect to='/home'/>
+                <Redirect to={from}/>
             )
         }
         return(
             <div>
                 <p>You must login as a user to access the application!!</p>
                {this.props.userIds.map((user)=>
-                    // (<Link onClick={()=>this.handleLoginClick(user.id)} key={user.id} to='/home'><button>{user.name}</button></Link>))}
                     (<button onClick={()=>this.handleLoginClick(user.id)} key={user.id}>{user.name}</button>))}
             </div>
         )

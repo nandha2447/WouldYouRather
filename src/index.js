@@ -13,6 +13,7 @@ import LeaderBoard from './components/LeaderBoard'
 import AddQuestion from './components/AddQuestion'
 import NotFoundPage from './components/NotFoundPage'
 import NavBar from './components/NavBar'
+import IndividualQuestion from './components/IndividualQuestion'
 
 export const fakeAuth = {
     isAuthenticated: false,
@@ -52,6 +53,7 @@ ReactDOM.render(
                 <PrivateRoute path="/home" component={HomePage}/>
                 <PrivateRoute path="/leaderboard" component={LeaderBoard}/>
                 <PrivateRoute path="/add" component={AddQuestion}/>
+                <PrivateRoute path="/questions/:id" component={IndividualQuestion}/>
                 <PrivateRoute component={NotFoundPage}/>
             </Switch>
         </BrowserRouter>

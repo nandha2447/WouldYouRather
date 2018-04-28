@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from './NavBar'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 class IndividualQuestion extends React.Component{
     render(){
@@ -14,6 +14,12 @@ class IndividualQuestion extends React.Component{
         let isOptionOne;
         console.log(Object.values(this.props.questions).filter(question => question.id === this.props.match.params.id))
         console.log(this.props.users)
+        if((Object.values(this.props.questions)
+            .filter(question => question.id === this.props.match.params.id)).length === 0){
+                return(
+                    <Redirect to='/404'/>
+                )
+        }
         return (
             <div>
                 <NavBar/>

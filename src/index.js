@@ -12,7 +12,7 @@ import LeaderBoard from './components/LeaderBoard'
 import AddQuestion from './components/AddQuestion'
 import NotFoundPage from './components/NotFoundPage'
 import IndividualQuestion from './components/IndividualQuestion'
-
+import QuestionNotFound from './components/QuestionNotFound'
 export const fakeAuth = {
     isAuthenticated: false,
     authenticate(cb){
@@ -52,6 +52,7 @@ ReactDOM.render(
                 <PrivateRoute path="/leaderboard" component={LeaderBoard}/>
                 <PrivateRoute path="/add" component={AddQuestion}/>
                 <PrivateRoute path="/questions/:id" component={IndividualQuestion}/>
+                <PrivateRoute path='/404' component={QuestionNotFound}/>
                 <PrivateRoute component={NotFoundPage}/>
             </Switch>
         </BrowserRouter>

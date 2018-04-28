@@ -1,12 +1,44 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const AnsweredQuestionsList = (props) => (
-    <div>
-        <h3>This is answered questions list </h3>
-        <ul>
-        {props.authedUserVotedQuestions.map(question => (<li key={question.id}><Link to={`questions/${question.id}`} >{question.author}</Link></li>))}   
-        </ul>
-    </div>
-)
+import {connect} from 'react-redux'
 
-export default AnsweredQuestionsList
+class AnsweredQuestionsList extends React.Component{
+    render(){
+        const selectedOption = {
+            color: 'green'
+        }
+        return (
+            <div>
+            <h3>This is answered questions list </h3>
+            <ul>
+            {this.props.authedUserVotedQuestions.map(question => 
+                (<li key={question.id}>
+                    <Link to={`questions/${question.id}`} >
+                    
+                    <h4 style={selectedOption}>
+                    <span>Option One:  </span>{question.optionOne.text}<br/>
+                    <span>voted by</span> totally {question.optionOne.votes.length} user/users and &nbsp;
+                    {parseFloat(question.optionOne.votes.length/this.props.totalNumberOfUsers*100).toFixed(2)}% of total users
+                    </h4>
+
+                    <h4 style={selectedOption}><span>Option Two:  </span>{question.optionTwo.text}<br/>
+                    <span>voted by</span> totally {question.optionTwo.votes.length} user/users and &nbsp;
+                    {parseFloat(question.optionTwo.votes.length/this.props.totalNumberOfUsers*100).toFixed(2)}% of total users
+                    </h4>
+                    </Link>
+                </li>))}   
+            </ul>
+        </div>
+        )
+    }
+}
+
+function mapStateToProps({authedUser, users}){
+    return{
+        authedUser,
+        totalNumberOfUsers: Object.values(users).length,
+        users
+    }
+}
+
+export default connect(mapStateToProps)(AnsweredQuestionsList)

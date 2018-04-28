@@ -13,6 +13,10 @@ class NotAnsweredQuestionsList extends React.Component{
         }))
     }
     render(){
+        var imgStyle = {
+            width: '50px',
+            height: '50px'
+        }
         return (
             <div>
             <h3>This is not answered questions list </h3>
@@ -21,7 +25,7 @@ class NotAnsweredQuestionsList extends React.Component{
             <li key={question.id}>
                 <div>
                     <h3> Would you rather </h3>
-                    <img src={this.props.users[question.author].avatarURL}/>
+                    <img alt="User Avatar" style={imgStyle} src={this.props.users[question.author].avatarURL}/>
                     <Link to={`questions/${question.id}`} onClick={()=>{this.onSelectAnswer(question.id,'optionOne')}}>
                         <h4>{question.optionOne.text}</h4>
                     </Link>

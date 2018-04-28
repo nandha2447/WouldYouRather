@@ -1,4 +1,4 @@
-import {_getUsers, _getQuestions} from '../utils/_DATA'
+import {_getUsers, _getQuestions,_saveQuestionAnswer} from '../utils/_DATA'
 import {receiveUsers} from './users'
 import {receiveQuestions} from './questions'
 
@@ -17,6 +17,14 @@ export function handleGetQuestons(){
         return _getQuestions().then((res)=>{
             console.log(res);
             dispatch(receiveQuestions(res))
+        })
+    }
+}
+
+export function saveQuestionAnswer(answerObj){
+    return (dispatch) => {
+        return _saveQuestionAnswer(answerObj).then((res)=>{
+            console.log(res);
         })
     }
 }

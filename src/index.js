@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
@@ -6,13 +6,11 @@ import {createStore, compose} from 'redux';
 import {Provider} from 'react-redux'
 import reducer from './reducers'
 import middleware  from './middleware'
-import {BrowserRouter, Route, Link, Switch, Redirect} from 'react-router-dom'
-import LoginPage from './components/Login'
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import HomePage from './components/HomePage'
 import LeaderBoard from './components/LeaderBoard'
 import AddQuestion from './components/AddQuestion'
 import NotFoundPage from './components/NotFoundPage'
-import NavBar from './components/NavBar'
 import IndividualQuestion from './components/IndividualQuestion'
 
 export const fakeAuth = {

@@ -1,7 +1,5 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {bindActionCreators} from 'redux'
 import {setAuthedUser} from '../actions/authedUser'
 import {fakeAuth} from '../index'
 import {Redirect} from 'react-router-dom'
@@ -22,7 +20,6 @@ class Login extends Component{
     render(){
         const { redirectToReferrer } = this.state
         const { from } = this.props.location.state || { from: { pathname: "/home" } };
-        console.log(this.props)
         if(redirectToReferrer === true){
             return(
                 <Redirect to={from}/>

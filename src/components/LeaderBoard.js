@@ -4,11 +4,9 @@ import {connect} from 'react-redux'
 
 class LeaderBoard extends React.Component{
     render(){
-        console.log(this.props)
         return (
             <div>
                 <NavBar />
-                This is LeaderBoard Page
                 <table>
                     <tbody>
                     <tr>
@@ -32,8 +30,7 @@ class LeaderBoard extends React.Component{
                     </tr>
                 ))}
                     </tbody>
-                </table>
-                
+                </table>   
             </div>
         )
     }

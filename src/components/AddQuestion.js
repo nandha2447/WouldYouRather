@@ -3,39 +3,42 @@ import NavBar from './NavBar'
 import {connect} from 'react-redux'
 import {handleSaveQuestion} from '../actions/questions'
 import {Redirect} from 'react-router-dom'
+
 class AddQuestion extends React.Component{
+
     state = {
         optionOneText: '',
         optionTwoText: '',
         questionSubmitted: false
     }
+
     componentDidMount(){
         this.setState(()=>({
             questionSubmitted: false
         }))        
     }
+
     handleOptionOne = (e) => {
         const text = e.target.value
         this.setState(()=>({
             optionOneText: text
         }))
-    }  
+    }
+
     handleOptionTwo = (e) => {
         const text = e.target.value
         this.setState(()=>({
             optionTwoText: text
         }))
     }
+
     handleSubmit = (e) => {
         e.preventDefault()
         const {optionOneText , optionTwoText } = this.state
-        console.log('option one' + optionOneText)
-        console.log('option two' + optionTwoText)
         this.setState(()=>({
             optionOneText: '',
             optionTwoText: ''
         }))
-        console.log(this.props)
         const {dispatch, authedUser} = this.props
         dispatch(handleSaveQuestion({
             optionOneText,

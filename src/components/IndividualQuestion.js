@@ -12,8 +12,6 @@ class IndividualQuestion extends React.Component{
             color: 'red'
         }
         let isOptionOne;
-        console.log(Object.values(this.props.questions).filter(question => question.id === this.props.match.params.id))
-        console.log(this.props.users)
         if((Object.values(this.props.questions)
             .filter(question => question.id === this.props.match.params.id)).length === 0){
                 return(
@@ -23,6 +21,7 @@ class IndividualQuestion extends React.Component{
         return (
             <div>
                 <NavBar/>
+                <h3 style={selectedOption}>Green marks your selected option</h3>
                 {
                     Object.values(this.props.questions)
                         .filter(question => question.id === this.props.match.params.id)
@@ -60,4 +59,5 @@ function mapStateToProps({questions,users,authedUser}){
         authedUser
     }
 }
+
 export default connect(mapStateToProps)(IndividualQuestion)

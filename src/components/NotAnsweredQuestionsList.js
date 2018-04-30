@@ -2,10 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {handleSaveAnswer} from '../actions/answers'
 import {Link} from 'react-router-dom'
+
 class NotAnsweredQuestionsList extends React.Component{
     onSelectAnswer(qid,answer){
-        console.log();
-        console.log(`Answer clicked with id ${qid} and answer ${answer}`);
         this.props.dispatch(handleSaveAnswer({
             authedUser: this.props.authedUser,
             qid,

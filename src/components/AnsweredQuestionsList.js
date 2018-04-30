@@ -4,12 +4,8 @@ import {connect} from 'react-redux'
 
 class AnsweredQuestionsList extends React.Component{
     render(){
-        const selectedOption = {
-            color: 'green'
-        }
-        const unSelectedOption = {
-            color: 'red'
-        }
+        const selectedOption = { color: 'green' }
+        const unSelectedOption = { color: 'red' }
         let isOptionOne;
         return (
             <div>
@@ -19,13 +15,11 @@ class AnsweredQuestionsList extends React.Component{
             {this.props.authedUserVotedQuestions.map(question => 
                 (<li key={question.id}>
                     <Link to={`questions/${question.id}`} >
-                    
                     {
                         question.optionOne.votes.length !== 0 && 
                         question.optionOne.votes.indexOf(this.props.authedUser) > -1 ?
                         isOptionOne = true : isOptionOne = false
                     }
-
                     <h4 style={isOptionOne ? selectedOption : unSelectedOption}>
                     <span>Option One:  </span>{question.optionOne.text}<br/>
                     <span>voted by</span> totally {question.optionOne.votes.length} user/users and &nbsp;

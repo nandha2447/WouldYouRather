@@ -16,10 +16,8 @@ class HomePage extends React.Component{
     render(){
         //Filter the answered questions by the authenticated user from the list of questions(
         const authedUserVotedQuestions = this.props.questions.filter(question => question.optionOne.votes.indexOf(this.props.authedUser)>-1 || question.optionTwo.votes.indexOf(this.props.authedUser)>-1).sort((a,b)=>b.timestamp-a.timestamp);
-        console.log(authedUserVotedQuestions);
         //Unanswered questions by the authenticated user from the list of questions
         const authedUserUnAnsweredQuestions = this.props.questions.filter(question => question.optionOne.votes.indexOf(this.props.authedUser)===-1 && question.optionTwo.votes.indexOf(this.props.authedUser)===-1).sort((a,b)=>b.timestamp-a.timestamp);
-        console.log(authedUserUnAnsweredQuestions);
         return(
             <div>
                 <NavBar />
@@ -40,4 +38,5 @@ function mapStateToProps(state){
         authedUser: state.authedUser
     }
 }
+
 export default connect(mapStateToProps)(HomePage)

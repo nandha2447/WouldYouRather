@@ -1,6 +1,5 @@
 import { RECEIVE_QUESTIONS,SAVE_QUESTION } from '../actions/questions'
 import { SAVE_ANSWER } from '../actions/answers'
-import {_saveQuestion} from '../utils/_DATA'
 export default function users(state={},action){
     switch(action.type){
         case RECEIVE_QUESTIONS:

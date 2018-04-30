@@ -17,7 +17,13 @@ class LeaderBoard extends React.Component{
                         <th>Number of questions asked</th>
                         <th>Number of questions answered</th>
                     </tr>
-                {this.props.users.map((user)=> (
+                {this.props.users
+                .sort((a,b)=>{
+                    let forA = this.props.usersObject[a.id].questions.length + Object.keys(this.props.usersObject[a.id].answers).length
+                    let forB = this.props.usersObject[b.id].questions.length + Object.keys(this.props.usersObject[b.id].answers).length
+                    return forB - forA
+                })
+                .map((user)=> (
                     <tr key={user.id}>
                         <td>{user.name}</td>
                         <td><img src={user.avatarURL} width="50px" height="50px" alt="User Avatar"/></td>

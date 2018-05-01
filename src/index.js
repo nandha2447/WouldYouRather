@@ -52,7 +52,7 @@ ReactDOM.render(
                 <PrivateRoute path="/home" component={HomePage}/>
                 <PrivateRoute path="/leaderboard" component={LeaderBoard}/>
                 <PrivateRoute path="/add" component={AddQuestion}/>
-                <PrivateRoute path="/questions/:id" component={IndividualQuestion}/>
+                <Route path="/questions/:id" component={IndividualQuestion}/>
                 <Route path='/404' component={QuestionNotFound}/>
                 <Route component={NotFoundPage}/>
             </Switch>

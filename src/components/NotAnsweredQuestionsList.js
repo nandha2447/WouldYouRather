@@ -1,18 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {handleSaveAnswer} from '../actions/answers'
 import {Link} from 'react-router-dom'
 
 class NotAnsweredQuestionsList extends React.Component{
-    onSelectAnswer(qid,answer){
-        this.props.dispatch(handleSaveAnswer({
-            authedUser: this.props.authedUser,
-            qid,
-            answer
-        }))
-    }
     render(){
-        var imgStyle = {
+        const imgStyle = {
             width: '50px',
             height: '50px'
         }
@@ -25,10 +17,10 @@ class NotAnsweredQuestionsList extends React.Component{
                 <div>
                     <h3> Would you rather </h3>
                     <img alt="User Avatar" style={imgStyle} src={this.props.users[question.author].avatarURL}/>
-                    <Link to={`questions/${question.id}`} onClick={()=>{this.onSelectAnswer(question.id,'optionOne')}}>
+                    <Link to={`questions/${question.id}`}>
                         <h4>{question.optionOne.text}</h4>
                     </Link>
-                    <Link to={`questions/${question.id}`} onClick={()=>{this.onSelectAnswer(question.id,'optionTwo')}}>
+                    <Link to={`questions/${question.id}`}>
                         <h4>{question.optionTwo.text}</h4>
                     </Link>
                 </div>

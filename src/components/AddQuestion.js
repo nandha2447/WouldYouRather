@@ -61,6 +61,7 @@ class AddQuestion extends React.Component{
             <div>
                 <NavBar />        
                 <h3>Add a Question</h3>
+                <h3>Would you rather?</h3>
                 <form onSubmit={this.handleSubmit}>
                     Option one: <input type="text" onChange={this.handleOptionOne} maxLength={50} value={optionOneText}/><br/>
                     Option two: <input type="text" onChange={this.handleOptionTwo} maxLength={50} value={optionTwoText}/>

@@ -53,8 +53,8 @@ ReactDOM.render(
                 <PrivateRoute path="/leaderboard" component={LeaderBoard}/>
                 <PrivateRoute path="/add" component={AddQuestion}/>
                 <PrivateRoute path="/questions/:id" component={IndividualQuestion}/>
-                <PrivateRoute path='/404' component={QuestionNotFound}/>
-                <PrivateRoute component={NotFoundPage}/>
+                <Route path='/404' component={QuestionNotFound}/>
+                <Route component={NotFoundPage}/>
             </Switch>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));

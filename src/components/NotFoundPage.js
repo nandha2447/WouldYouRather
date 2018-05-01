@@ -5,8 +5,8 @@ import NavBar from './NavBar'
 const NotFoundPage = () => (
     <div>
         <NavBar />
-        We don't have anything to show in this page. <br/>
-        <Link to='/home'>Go Home</Link>
+        <h2>Error 404. We don't have anything to show in this page.</h2> <br/>
+        <h3><Link to='/home'>Go Home</Link></h3>
     </div>
 )
 

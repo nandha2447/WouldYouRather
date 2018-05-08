@@ -77,6 +77,7 @@ class IndividualQuestion extends React.Component{
                                 isOptionOne = true : isOptionOne = false
                             }
                             <h3 style={selectedOption}>Green marks your selected option</h3>
+                            <img alt="User Avatar" style={imgStyle} src={this.props.users[question.author].avatarURL}/>
                             <Link to='/home'>
                             <h4 style={isOptionOne ? selectedOption : unSelectedOption}>
                             <span>Option One:  </span>{question.optionOne.text}<br/>

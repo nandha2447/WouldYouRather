@@ -6,7 +6,9 @@ import {createStore, compose} from 'redux';
 import {Provider} from 'react-redux'
 import reducer from './reducers'
 import middleware  from './middleware'
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
+import {ConnectedRouter} from 'react-router-redux'
+import {history} from './middleware'
 import HomePage from './components/HomePage'
 import LeaderBoard from './components/LeaderBoard'
 import AddQuestion from './components/AddQuestion'
@@ -39,14 +41,37 @@ const PrivateRoute = ({component: Component, ...rest}) => (
     )} />
 )
 
-const store = createStore(reducer,compose(
+function saveToLocalStorage(state){
+    try{
+        const serializedState = JSON.stringify(state)
+        localStorage.setItem('state',serializedState)
+    }catch(e){
+        console.log(e)
+    }
+}
+
+function loadFromLocalStorage(){
+    try{
+        const serializedState = localStorage.getItem('state')
+        if(serializedState === null) return undefined
+        return JSON.parse(serializedState)
+    }catch(e){
+        console.log(e)
+        return undefined
+    }
+}
+
+const persistedState = loadFromLocalStorage()
+const store = createStore(reducer,persistedState,compose(
     middleware,
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ))
 
+store.subscribe(()=> saveToLocalStorage(store.getState()))
+
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <Switch>
                 <Route path="/" component={App} exact={true}/>
                 <PrivateRoute path="/home" component={HomePage}/>
@@ -56,6 +81,6 @@ ReactDOM.render(
                 <Route path='/404' component={QuestionNotFound}/>
                 <Route component={NotFoundPage}/>
             </Switch>
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>, document.getElementById('root'));
 

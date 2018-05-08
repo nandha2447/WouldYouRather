@@ -3,7 +3,8 @@ import NavBar from './NavBar'
 import {connect} from 'react-redux'
 import {Link, Redirect} from 'react-router-dom'
 import {handleSaveAnswer} from '../actions/answers'
-import {setAuthedUser} from '../actions/authedUser'
+import {fakeAuth} from '../index'
+import {push} from 'react-router-redux'
 
 class IndividualQuestion extends React.Component{
     onSelectAnswer(qid,answer){
@@ -21,11 +22,12 @@ class IndividualQuestion extends React.Component{
         }
         if((Object.values(this.props.questions)
             .filter(question => question.id === this.props.match.params.id)).length === 0){
-                this.props.dispatch(setAuthedUser('sarahedo'))
+                fakeAuth.authenticate(()=>{this.props.dispatch(push('/404'))})
                 return(
                     <Redirect to='/404'/>
                 )
         }
+        else{
         const particularQuestion = Object.values(this.props.questions)
         .find(question => question.id===this.props.match.params.id);
         const isAnswered = particularQuestion.optionOne.votes.indexOf(this.props.authedUser)>-1 || particularQuestion.optionTwo.votes.indexOf(this.props.authedUser)>-1;
@@ -92,7 +94,7 @@ class IndividualQuestion extends React.Component{
                         ))
             )
         }
-        
+    }
     }
 }
 
